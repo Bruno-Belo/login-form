@@ -1,3 +1,4 @@
+/* Importação de Fonte */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -13,6 +14,7 @@ body {
     background-repeat:  no-repeat;
     min-height: 100vh;
     min-width: 100vw;
+    /* Centralizando a div */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,9 +32,11 @@ body {
 main h2 {
     font-weight: 600;
     margin-bottom: 2rem;
+    /* Para o before, que é a linha em baixo de login, precisa ser definido como posição absoluta, e só dá pra usar posição absoluta se o elemento pai for relative. No caso, main h2 é o login que é o elemento pai. */
     position: relative;
 }
 
+/* Todo pseudo elementeo before e after precisa ter content. */
 main h2::before {
     content: '';
     position: absolute;
@@ -46,6 +50,7 @@ main h2::before {
 
 form {
     display: flex;
+    /* Ficar um em baixo do outro */
     flex-direction: column;
 }
 
@@ -59,6 +64,7 @@ form .input-field:first-child {
 
 .input-field .underline::before {
     content: '';
+    /* absolute em relação ao pai que é relative */
     position: absolute;
     height: 1px;
     width: 100%;
@@ -75,12 +81,17 @@ form .input-field:first-child {
     bottom: -5px;
     left: 0;
     background: linear-gradient(45deg, #8e2de2, #4a00e0);
+    /* No eixo X vai estar no zero, ou seja, não vai estar visível */
     transform: scaleX(0);
+    /* Transição do underline do input */
     transition: all .3s ease-in-out;
+    /* Inicia o underline do input da esquerda para a direita */
     transform-origin: left;
 }
 
+/* Propriedade focus, realização uma ação apenas quando está selecionado determinado input, no caso, colocar o underline em um dos input */
 .input-field input:focus ~ .underline::after{
+    /* Quando estiver focado vai estar visível, ou seja, vai de 0 a 1 no eixo X */
     transform: scaleX(1);
 }
 
@@ -103,6 +114,7 @@ form input[type="submit"] {
     font-size: 0.9rem;
     font-weight: 300;
     border-radius: 4px;
+    /* O CSS não suporta transições com gradientes */
     transition: all 0.3s ease;
 }
 
